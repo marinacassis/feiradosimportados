@@ -19,48 +19,28 @@
         android:weightSum="1">
 
         <ImageView
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/feira"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="LOGIN"
-            android:id="@+id/textView"
-            android:textSize="24sp"
-            android:textColor="#1A237E"
-            android:textStyle="bold"/>
+            android:id="@+id/txtEmail"
+            android:text="E-mail" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="SENHA"
-            android:id="@+id/textView2"
-            android:textSize="24dp"
-            android:textColor="#1A237E"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText2" />
+            android:id="@+id/txtSenha"
+            android:text="Senha" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="ENTRAR"
             android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:onClick="onclick" />
     </LinearLayout>
