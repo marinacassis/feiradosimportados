@@ -1,9 +1,13 @@
 package br.com.marina.feiradosimportados.activities;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        Button button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View i){
+                Intent cadastroIntent = new Intent(MainActivity.this, Cadastro.class);
+            }
+        });
+
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -48,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     FirebaseUser user = task.getResult().getUser();
                                     if (user != null) {
-                                        Intent it = new Intent(MainActivity.this, Cadastro.class);
+                                        Intent it = new Intent(MainActivity.this, MapActivity.class);
                                         startActivity(it);
                                         finish();
                                     }
@@ -57,6 +69,28 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
+
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+        mBuilder.setContentTitle("My notification");
+        mBuilder.setContentText("Hello World!");
+
+        Intent resultIntent = new Intent(this, DetailActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+
+        stackBuilder.addNextIntentWithParentStack(resultIntent);
+
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(this.NOTIFICATION_SERVICE);
+
+        mNotificationManager.notify(0, mBuilder.build());
+
+
     }
     @Override
     public void onStart() {
